@@ -11,7 +11,9 @@ function Book (author, title, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(book) {
+function addBookToLibrary(author, title, pages, read) {
+    // Create book object
+    const book = new Book(author, title, pages, read);
     // Add book to myLibrary array
     myLibrary.push(book);
 }
@@ -99,10 +101,9 @@ function viewLibrary () {
 
 
 // Books created for testing
-let theHobbit = new Book('Tolkein', 'The Hobbit', '294', 'read');
-addBookToLibrary(theHobbit);
-let theFellowship = new Book ('Tolkein', 'Fellowship of Ring', '420', 'unread');
-addBookToLibrary(theFellowship);
+addBookToLibrary('Tolkein', 'The Hobbit', '294', 'read');
+addBookToLibrary('Tolkein', 'Fellowship of Ring', '420', 'unread');
+
 
 // let book1 = document.createElement('div');
 // let shelf = libDisplay.appendChild(book1);

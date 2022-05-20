@@ -1,5 +1,8 @@
 let myLibrary = [];
-let libDisplay = document.querySelector('.lib-display');
+const libDisplay = document.querySelector('.lib-display');
+const newBookButton = document.querySelector('.new-book');
+const bookModal = document.querySelector('.modal');
+const overlay = document.querySelector('#overlay');
 
 function Book (author, title, pages, read) {
     // Object constructor
@@ -18,9 +21,15 @@ function addBookToLibrary(author, title, pages, read) {
     myLibrary.push(book);
 }
 
-function bookModal() {
+function newBook() {
     // Pop up modal form for book info to be input
+    overlay.classList.remove('hidden');
+    bookModal.classList.remove('hidden');
+
 }
+
+// Create event listener for new book button
+newBookButton.addEventListener('click', () => newBook());
 
 function removeBook(book) {
     // Remove the book from the array

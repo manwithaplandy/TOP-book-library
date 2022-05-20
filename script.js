@@ -22,6 +22,10 @@ function bookModal() {
 
 function removeBook(book) {
     // Remove the book from the array
+    const index = myLibrary.indexOf(book);
+    if (index > -1) {
+        myLibrary.splice(index, 1); // Remove only 1 item
+    }
     // Refresh the list
     viewLibrary();
 }

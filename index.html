@@ -11,13 +11,13 @@
 </head>
 <body class="h-screen"></body>
     <br>
-    <div class="main h-full p-0">
+    <div class="main h-screen p-0 overflow-y-auto static">
         <h1 class="text-3xl font-bold text-center">BOOKS</h1>
-        <div class="lib-display p-10 flex flex-col justify-center items-stretch gap-3 overflow-auto"></div>
-    </div>
-    <div class="buttons flex justify-center gap-4 fixed inset-x-0 bottom-0 pb-5">
-        <button class="new-book rounded-full bg-sky-400 px-3 py-2">NEW BOOK</button>
-        <button class="show-books rounded-full bg-sky-400 px-3 py-2">SHOW BOOKS</button>
+        <div class="buttons flex justify-center gap-4 pt-6 sticky top-0">
+            <button class="new-book rounded-full bg-sky-400 px-3 py-2">NEW BOOK</button>
+            <button class="show-books rounded-full bg-sky-400 px-3 py-2">SHOW BOOKS</button>
+        </div>
+        <div class="lib-display p-10 flex flex-col justify-center items-stretch gap-3 mb-10"></div>
     </div>
 </body>
 </html>

@@ -20,6 +20,12 @@ function bookModal() {
     // Pop up modal form for book info to be input
 }
 
+function removeBook(book) {
+    // Remove the book from the array
+    // Refresh the list
+    viewLibrary();
+}
+
 function markRead(book) {
     if (book.read != 'read') {
         book.read = 'read';
@@ -31,11 +37,15 @@ function markRead(book) {
         readButton.textContent = 'Mark Read';
     }
     let div = document.querySelector(`.b-${book.id}-display`);
-    console.log(div);
     div.innerText = `${book.title} \nby ${book.author} \nLength: ${book.pages} pages long \nRead status: ${book.read}`;
 }
 
+function clearLibDisplay() {
+    libDisplay.innerHTML = '';
+}
+
 function viewLibrary () {
+    clearLibDisplay();
     myLibrary.forEach((book) => {
         //Create a parent div to contain the book info and the buttons
         let bigDiv = document.createElement('div');
@@ -55,7 +65,11 @@ function viewLibrary () {
 
         // Style buttons, add class for javascript function, append to div
         readButton.classList = `b-${book.id}-read-button rounded-full bg-green-500 px-3 py-2 text-base`
-        readButton.textContent = 'Mark Read';
+        if (book.read != 'read') { // Set mark read button according to read status
+            readButton.textContent = 'Mark Read';
+        } else {
+            readButton.textContent = 'Mark Unread';
+        }
         buttons.appendChild(readButton);
         removeButton.classList = `b-${book.id}-remove-button rounded-full bg-red-500 px-3 py-2 text-base`
         removeButton.textContent = 'Remove'
@@ -65,8 +79,20 @@ function viewLibrary () {
         div.classList = `b-${book.id}-display`;
         div.innerText = `${book.title} \nby ${book.author} \nLength: ${book.pages} pages long \nRead status: ${book.read}`;
         libDisplay.appendChild(bigDiv);
+
+        // Add event listeners to functions
+        readButton.addEventListener('click', () => markRead(book));
+        removeButton.addEventListener('click', () => removeBook(book));
     });
 }
+
+
+
+
+
+
+
+
 
 // Books created for testing
 let theHobbit = new Book('Tolkein', 'The Hobbit', '294', 'read');

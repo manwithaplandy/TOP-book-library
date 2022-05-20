@@ -11,7 +11,11 @@ function Book (author, title, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    if (read) {
+        this.read = 'read';
+    } else {
+        this.read = 'unread';
+    }
 }
 
 function addBookToLibrary(author, title, pages, read) {
@@ -21,15 +25,47 @@ function addBookToLibrary(author, title, pages, read) {
     myLibrary.push(book);
 }
 
-function newBook() {
-    // Pop up modal form for book info to be input
-    overlay.classList.remove('hidden');
-    bookModal.classList.remove('hidden');
+/*
+ Modal event listeners 
+*/
 
+// Add event listener for close button
+const closeButton = document.querySelector('.close-button');
+closeButton.addEventListener('click', () => toggleModal());
+// Add event listener for submit button
+const submitButton = document.querySelector('#new-book-button');
+submitButton.addEventListener('click', () => {
+    // Set variables equivalent to form values
+    let title = document.getElementById('title').value;
+    let author = document.getElementById('author').value;
+    let pages = document.getElementById('pages').value;
+    let read = document.getElementById('read').value;
+
+    //Add book to library using those variables IF they are all filled out
+    if (title && author && pages) {
+        addBookToLibrary(author, title, pages, read);
+    } else {
+        document.querySelector('.error-message').textContent = "Please complete all fields."
+
+    }
+    toggleModal();
+    viewLibrary();
+})
+
+
+function toggleModal() {
+    if (bookModal.classList.contains('hidden')) {
+        // Show modal
+        overlay.classList.remove('hidden');
+        bookModal.classList.remove('hidden');
+    } else {
+        overlay.classList.add('hidden');
+        bookModal.classList.add('hidden');
+    }
 }
 
 // Create event listener for new book button
-newBookButton.addEventListener('click', () => newBook());
+newBookButton.addEventListener('click', () => toggleModal());
 
 function removeBook(book) {
     // Remove the book from the array

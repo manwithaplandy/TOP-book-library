@@ -107,7 +107,7 @@ function viewLibrary () {
         let removeButton = document.createElement('button');
 
         // Style main card div, centering everything
-        bigDiv.classList = `${book.id}-card border-2 border-slate-600 bg-slate-200 text-center rounded-xl text-xl p-2 flex flex-col gap-3`
+        bigDiv.classList = `${book.id}-card border-2 border-slate-600 bg-slate-50 text-center rounded-xl text-xl p-2 flex flex-col gap-3`
         bigDiv.appendChild(div); // Add child div to main book div
         bigDiv.appendChild(buttons); // Add buttons to main book div
 

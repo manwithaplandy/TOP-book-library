@@ -146,8 +146,8 @@ function viewLibrary () {
 
 
 // Books created for testing
-addBookToLibrary('Tolkein', 'The Hobbit', '294', 'read');
-addBookToLibrary('Tolkein', 'Fellowship of Ring', '420', 'unread');
+addBookToLibrary('J.R.R. Tolkein', 'The Hobbit', '300', 'read');
+addBookToLibrary('J.R.R. Tolkein', 'The Fellowship of the Ring', '423', 'unread');
 
 
 // let book1 = document.createElement('div');

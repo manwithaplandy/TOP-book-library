@@ -4,6 +4,7 @@ let libDisplay = document.querySelector('.lib-display');
 function Book (author, title, pages, read) {
     // Object constructor
     // Author, title, page count, read or not
+    this.id = Math.round(Math.random() * 10000);
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -13,6 +14,25 @@ function Book (author, title, pages, read) {
 function addBookToLibrary(book) {
     // Add book to myLibrary array
     myLibrary.push(book);
+}
+
+function bookModal() {
+    // Pop up modal form for book info to be input
+}
+
+function markRead(book) {
+    if (book.read != 'read') {
+        book.read = 'read';
+        let readButton = document.querySelector(`.b-${book.id}-read-button`);
+        readButton.textContent = 'Mark Unread';
+    } else {
+        book.read = 'unread';
+        let readButton = document.querySelector(`.b-${book.id}-read-button`);
+        readButton.textContent = 'Mark Read';
+    }
+    let div = document.querySelector(`.b-${book.id}-display`);
+    console.log(div);
+    div.innerText = `${book.title} \nby ${book.author} \nLength: ${book.pages} pages long \nRead status: ${book.read}`;
 }
 
 function viewLibrary () {
@@ -26,7 +46,7 @@ function viewLibrary () {
         let removeButton = document.createElement('button');
 
         // Style main card div, centering everything
-        bigDiv.classList = 'book-card border-2 border-slate-600 bg-slate-200 text-center rounded-xl text-xl p-2 flex flex-col gap-3'
+        bigDiv.classList = `${book.id}-card border-2 border-slate-600 bg-slate-200 text-center rounded-xl text-xl p-2 flex flex-col gap-3`
         bigDiv.appendChild(div); // Add child div to main book div
         bigDiv.appendChild(buttons); // Add buttons to main book div
 
@@ -34,15 +54,15 @@ function viewLibrary () {
         buttons.classList = 'flex gap-3 justify-center'
 
         // Style buttons, add class for javascript function, append to div
-        readButton.classList = 'mark-read-button rounded-full bg-green-500 px-3 py-2 text-base'
+        readButton.classList = `b-${book.id}-read-button rounded-full bg-green-500 px-3 py-2 text-base`
         readButton.textContent = 'Mark Read';
         buttons.appendChild(readButton);
-        removeButton.classList = 'remove-button rounded-full bg-red-500 px-3 py-2 text-base'
+        removeButton.classList = `b-${book.id}-remove-button rounded-full bg-red-500 px-3 py-2 text-base`
         removeButton.textContent = 'Remove'
         buttons.appendChild(removeButton);
 
         // Create text element, style it, and add it to the display
-        div.classList = 'book-display';
+        div.classList = `b-${book.id}-display`;
         div.innerText = `${book.title} \nby ${book.author} \nLength: ${book.pages} pages long \nRead status: ${book.read}`;
         libDisplay.appendChild(bigDiv);
     });
